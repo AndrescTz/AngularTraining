@@ -15,3 +15,8 @@ a:hover{
 agm-map{
     height: 300px;
 }
+
+.even-number{
+    background-color: aliceblue;
+    color:blue;
+}

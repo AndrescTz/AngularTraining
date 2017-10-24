@@ -19,3 +19,16 @@
     <li *ngIf="place.active">{{place.name}}</li>
   </ng-container>
 </ul>
+
+<ul>
+  <ng-container *ngFor="let place of places; let i = index" [ngSwitch]="place.closeness">
+    <li 
+      [ngStyle]="{color: (place.active) ? 'black':'gray'}"
+      [ngClass]="{'even-number': (i+1) % 2 !== 0}">
+        {{place.name}} - 
+        <span *ngSwitchCase="1" [ngStyle]="{color: 'green'}">Very Close</span>
+        <span *ngSwitchCase="2" [ngStyle]="{color: 'black'}">Close</span>
+        <span *ngSwitchCase="3" [ngStyle]="{color: 'red'}">Far</span>
+    </li>
+  </ng-container>
+</ul>
