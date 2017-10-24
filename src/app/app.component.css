@@ -1,0 +1,17 @@
+
+ul li{
+    list-style: none;
+
+}
+
+a, a:visited{
+    color: #2e5eb8;
+    text-decoration: none;
+}
+a:hover{
+    color:#339ccc;
+}
+
+agm-map{
+    height: 300px;
+}
