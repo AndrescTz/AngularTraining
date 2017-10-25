@@ -1,36 +1,21 @@
-<!-- <div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <hr>
-  <button [disabled]="!ready" (click)="doSomething()">Click me!</button>
-  <hr>
-  <input type="text" placeholder="Your firstname here!" [(ngModel)]="firstname"/>
-  <input type="text" placeholder="Your lastname here!" [(ngModel)]="lastname"/>
-  <br>
-  <h2>My name is {{firstname + ' ' +  lastname}}</h2>
-</div> -->
-<agm-map [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-  </agm-map>
-<br>
-<ul>
-  <ng-container *ngFor="let place of places">
-    <li *ngIf="place.active">{{place.name}}</li>
-  </ng-container>
-</ul>
-<hr>
-<ul>
-  <ng-container *ngFor="let place of places; let i = index" [ngSwitch]="place.closeness">
-      <li
-        count-clicks
-        [ngStyle]="{color: (place.active) ? 'black':'gray'}"
-        [ngClass]="{'even-number': (i+1) % 2 !== 0}"
-        [highlight]="place.plan">
-          {{place.name}} -
-          <span *ngSwitchCase="1" [ngStyle]="{color: 'green'}">Very Close</span>
-          <span *ngSwitchCase="2" [ngStyle]="{color: 'black'}">Close</span>
-          <span *ngSwitchCase="3" [ngStyle]="{color: 'red'}">Far</span>
-      </li>
-  </ng-container>
-</ul>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">PlatziSquare</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a routerLink="/places">Home<span class="sr-only">(current)</span></a></li>
+        <li><a routerLink="/detail">Detail</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>

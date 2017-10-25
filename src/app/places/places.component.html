@@ -1,0 +1,19 @@
+<agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+        <h2>Near Places</h2>
+        <ul class="list-group">
+            <ng-container *ngFor="let place of places">
+                <li *ngIf="place.active" class="list-group-item">{{place.name}}</li>
+            </ng-container>
+        </ul>
+        </div>
+        <div class="col-md-4">
+            <h2>Favourites</h2>
+        </div>
+    </div>
+</div>
