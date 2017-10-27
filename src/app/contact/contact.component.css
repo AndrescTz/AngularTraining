@@ -1,0 +1,23 @@
+.contact-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.image-container{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.image-container__logo{
+    height: 250px;
+    width: 250px; 
+}
+.form-box{
+    background: rgba(34, 34, 34, 0.5);
+    padding: 20px;
+}
+.form-item{
+    margin-bottom: 20px;
+}

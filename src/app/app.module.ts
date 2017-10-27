@@ -5,15 +5,19 @@ import { AgmCoreModule } from '@agm/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PlacesComponent } from './places/places.component';
 import { DetailComponent } from './detail/detail.component';
+import { ContactComponent } from './contact/contact.component';
 
 import { AppComponent } from './app.component';
 import {HighlightDirective} from "./directives/highlight.directive";
 import {CountCLicksDirective} from "./directives/count-clicks.directive";
+import { PlacesService } from "./services/places.service";
 
 const appRoutes: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', component: PlacesComponent },
   { path: 'places', component: PlacesComponent },
-  { path: 'detail', component: DetailComponent }
+  { path: 'detail/:id', component: DetailComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: '**', redirectTo: 'places'}
 ];
 @NgModule({
   declarations: [
@@ -21,8 +25,9 @@ const appRoutes: Routes = [
     HighlightDirective,
     CountCLicksDirective,
     PlacesComponent,
-    DetailComponent
-  ],
+    DetailComponent,
+    ContactComponent
+],
   imports: [
     BrowserModule,
     FormsModule,
@@ -31,7 +36,7 @@ const appRoutes: Routes = [
     }),
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [],
+  providers: [PlacesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

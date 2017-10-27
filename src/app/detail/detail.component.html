@@ -1,1 +1,13 @@
-<h1>Detail</h1>
+<div class="well">
+    <a routerLink="/places">Places</a> / {{place.name}}
+</div>
+<div class="container">
+    <h1>{{place.name}}</h1>
+    <hr>
+    <small>{{place.distance}} km</small>
+    <br>
+    <div class="well">
+        <p>{{place.description}}</p>
+        <b>Plan: {{place.plan}}</b>
+    </div>
+</div>

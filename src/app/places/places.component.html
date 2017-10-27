@@ -1,14 +1,19 @@
-<agm-map [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
-<hr>
+<div class="map-container">
+    <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>   
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-8">
         <h2>Near Places</h2>
         <ul class="list-group">
             <ng-container *ngFor="let place of places">
-                <li *ngIf="place.active" class="list-group-item">{{place.name}}</li>
+                <a  routerLink="/detail/{{place.id}}" 
+                    [queryParams]="{action: 'view', referer: 'google'}"
+                    class="places-link">
+                    <li *ngIf="place.active" class="list-group-item places-item">{{place.name}}</li>
+                </a>
             </ng-container>
         </ul>
         </div>

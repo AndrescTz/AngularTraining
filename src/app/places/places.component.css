@@ -1,3 +1,22 @@
+.map-container{
+    margin: auto;
+    max-width: 800px;
+    padding: 15px;
+    background: rgba(34, 34, 34, 0.5);
+    border-radius: 10px;
+}
 agm-map{
-    height: 300px;
+    height: 350px;
+}
+.places-link{
+    color: #c8c8c8;
+}
+.places-link:hover{
+    color: #fff;
+    text-decoration: none;
+}
+.places-item{
+    border:none;
+    margin-bottom: 20px;
+    background: rgba(34, 34, 34, 0.5);
 }

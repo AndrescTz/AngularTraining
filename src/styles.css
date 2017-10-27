@@ -1,0 +1,18 @@
+html, body{
+    height: 100%;
+}
+
+body{
+    background: url("assets/landscape-wall.jpg")no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.well{
+    color:#222;
+}
+.navbar {
+    border-radius: 0;
+}
