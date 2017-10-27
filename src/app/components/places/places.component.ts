@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PlacesService } from '../services/places.service';
+import { PlacesService } from '../../services/places.service';
 
 @Component({
   selector: 'app-places',
@@ -8,11 +8,12 @@ import { PlacesService } from '../services/places.service';
 })
 export class PlacesComponent {
   title = 'PlatziSquare';
-  
   lat: number = -11.9472227;
   lng: number = -77.063395;
   places = null;
   constructor(private placesService: PlacesService) {
-    this.places = placesService.getPlaces();
+    placesService.getPlaces().valueChanges().subscribe( places => {
+        this.places = places;
+      });
   }
 }

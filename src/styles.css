@@ -3,7 +3,7 @@ html, body{
 }
 
 body{
-    background: url("assets/landscape-wall.jpg")no-repeat center center fixed; 
+    background: url("./assets/landscape-wall.jpg")no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -15,4 +15,5 @@ body{
 }
 .navbar {
     border-radius: 0;
+    margin-bottom:0;
 }

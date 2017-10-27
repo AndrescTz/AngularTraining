@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database/database';
 
 @Injectable()
 export class PlacesService {
@@ -16,9 +17,15 @@ export class PlacesService {
         {id: 11, name: 'Place - Option 11', plan: 'pay', closeness: 1, distance: 2, active: true },
         {id: 12, name: 'Place - Option 12', plan: 'free', closeness: 3, distance: 250, active: true }
       ];
-    constructor() { }
-    public getPlaces(){
-        return this.places;
+    constructor(private afDB: AngularFireDatabase) { }
+    public getPlaces() {
+        return this.afDB.list('places/');
     }
-
+    public findPlace(id) {
+        return this.places.filter( place => place.id == id)[0] || null;
+    }
+    public savePlace(place) {
+        console.log(place);
+        return this.afDB.database.ref(`places/${place.id}`).set(place);
+    }
 }

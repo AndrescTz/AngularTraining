@@ -1,0 +1,46 @@
+<div class="well">
+  <a routerLink="/places">Places</a> / Create Place
+</div>
+<div class="col-sm-6 right">
+  <div class="form-group form-box">
+    <h3>General</h3>
+    <div class="form-item">
+      <label>Name</label>
+      <input type="text" class="form-control" [(ngModel)]="place.name"/>
+    </div>
+    <div class="form-item">
+      <label>Distance</label>
+      <input type="number" class="form-control" [(ngModel)]="place.distance"/>
+    </div>
+    <div class="form-item">
+      <label>Closeness</label>
+      <input type="number" class="form-control" [(ngModel)]="place.closeness"/>
+    </div>
+    <div class="form-item">
+      <label>Description</label>
+      <textarea class="form-control" [(ngModel)]="place.description"></textarea>
+    </div>
+    <div class="form-item">
+        <label>Plan</label>
+        <input type="text" class="form-control" [(ngModel)]="place.plan"/>
+    </div>
+    <br>
+    <h3>Direction</h3>
+    <hr>
+    <div class="form-item">
+        <label>Street</label>
+        <input type="text" class="form-control" [(ngModel)]="place.street"/>
+    </div>
+    <div class="form-item">
+        <label>City</label>
+        <input type="text" class="form-control" [(ngModel)]="place.city"/>
+    </div>
+    <div class="form-item">
+        <label>Country</label>
+        <input type="text" class="form-control" [(ngModel)]="place.country"/>
+    </div>
+    <hr>
+    <a class="btn btn-primary" (click)="savePlace()">Save</a>
+    <a routerLink="/places" class="btn btn-default">Cancel</a>
+  </div>
+</div>

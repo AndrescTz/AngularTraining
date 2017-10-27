@@ -1,5 +1,26 @@
+html, body{
+    height: 100%;
+}
+
+body{
+    
+}
+
+.well{
+    color:#222;
+}
+.navbar {
+    border-radius: 0;
+    margin-bottom:0;
+}
 main{
-    height: calc(100% - 72px);
+    height: calc(100% - 52px);
+    background: url("../assets/landscape-wall.jpg")no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     color: #e8e8e8;
-    margin: 0 20px;
+    padding: 20px 20px 0 20px;
+    overflow-y: auto;
 }
