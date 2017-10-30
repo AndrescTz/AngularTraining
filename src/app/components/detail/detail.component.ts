@@ -15,6 +15,8 @@ export class DetailComponent {
   constructor(private route: ActivatedRoute, private placesService: PlacesService) {
     this.id = this.route.snapshot.params['id'];
     this.places = placesService.getPlaces();
-    this.place = placesService.findPlace(this.id);
+    this.place = placesService.findPlace(this.id).valueChanges().subscribe( place => {
+      this.place = place;
+    });
   }
 }

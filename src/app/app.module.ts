@@ -9,9 +9,10 @@ import { DetailComponent } from './components/detail/detail.component';
 import { ContactComponent } from './components/contact/contact.component';
 
 import { AppComponent } from './app.component';
-import {HighlightDirective} from './directives/highlight.directive';
-import {CountCLicksDirective} from './directives/count-clicks.directive';
+import { HighlightDirective } from './directives/highlight.directive';
+import { CountCLicksDirective } from './directives/count-clicks.directive';
 import { PlacesService } from './services/places.service';
+import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
   { path: '', component: PlacesComponent },
   { path: 'places', component: PlacesComponent },
   { path: 'create', component: CreateComponent },
+  { path: 'edit/:id', component: CreateComponent },
   { path: 'detail/:id', component: DetailComponent },
   { path: 'contact', component: ContactComponent },
   { path: '**', redirectTo: 'places'}
@@ -42,6 +44,7 @@ const appRoutes: Routes = [
       apiKey: 'AIzaSyBTTcm3P2sIYZUC0A2I6sSFZrqhcDSLWWc'
     }),
     RouterModule.forRoot(appRoutes),
+    HttpModule,
     AngularFireModule.initializeApp(environment.firebase, 'platzisqueare'),
     AngularFireAuthModule,
     AngularFireDatabaseModule

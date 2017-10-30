@@ -12,8 +12,8 @@ export class PlacesComponent {
   lng: number = -77.063395;
   places = null;
   constructor(private placesService: PlacesService) {
-    placesService.getPlaces().valueChanges().subscribe( places => {
-        this.places = places;
+    placesService.getPlaces().subscribe( places => {
+        this.places = Object.keys(places).map( key => places[key]);
       });
   }
 }

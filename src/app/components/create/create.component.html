@@ -1,5 +1,5 @@
 <div class="well">
-  <a routerLink="/places">Places</a> / Create Place
+  <a routerLink="/places">Places</a> / {{placeTitle}}
 </div>
 <div class="col-sm-6 right">
   <div class="form-group form-box">
@@ -25,7 +25,7 @@
         <input type="text" class="form-control" [(ngModel)]="place.plan"/>
     </div>
     <br>
-    <h3>Direction</h3>
+    <h3>Address</h3>
     <hr>
     <div class="form-item">
         <label>Street</label>

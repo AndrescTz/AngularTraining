@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database/database';
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PlacesService {
+    API_ENDPOINT = 'https://platzisquare-8f0a7.firebaseio.com';
     places: any = [
         {id: 1, name: 'Place - Option 1', plan: 'free', closeness: 1, distance: 1, active: true },
         {id: 2, name: 'Place - Option 2', plan: 'pay', closeness: 3, distance: 80, active: false },
@@ -17,15 +20,39 @@ export class PlacesService {
         {id: 11, name: 'Place - Option 11', plan: 'pay', closeness: 1, distance: 2, active: true },
         {id: 12, name: 'Place - Option 12', plan: 'free', closeness: 3, distance: 250, active: true }
       ];
-    constructor(private afDB: AngularFireDatabase) { }
+    constructor(private afDB: AngularFireDatabase, private http: Http) { }
     public getPlaces() {
-        return this.afDB.list('places/');
+        /*   SOCKETS   */
+        //return this.afDB.list('places/');
+        /* ----------- */
+
+        return this.http.get(`${this.API_ENDPOINT}/.json`)
+        .map( result => { //I imported rxjs reference fot this 'map'
+            const data = result.json().places;
+            return data;
+        });
+
     }
-    public findPlace(id) {
-        return this.places.filter( place => place.id == id)[0] || null;
+    public findPlace(id){
+        return this.afDB.object(`places/${id}`);
     }
     public savePlace(place) {
-        console.log(place);
-        return this.afDB.database.ref(`places/${place.id}`).set(place);
+        /*   SOCKETS   */
+        //return this.afDB.database.ref(`places/${place.id}`).set(place);
+        /* ----------- */
+
+        /*     HTTP    */
+        const headers = new Headers({'Content-Type':'application/json'});
+        return this.http.post(
+            `${this.API_ENDPOINT}/places.json`,
+            place,
+            {
+                headers:headers
+            }
+        );
+        /* ----------- */
+    }
+    public getGeoData(address){
+        return this.http.get(`http://maps.google.com/maps/api/geocode/json?address=${address}`);
     }
 }

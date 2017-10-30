@@ -1,6 +1,6 @@
 <div class="map-container">
-    <agm-map [latitude]="lat" [longitude]="lng">
-        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="13">
+        <agm-marker *ngFor="let place of places" [latitude]="place.lat" [longitude]="place.lng"></agm-marker>
     </agm-map>   
 </div>
 <div class="container">
@@ -15,11 +15,25 @@
             </div>
             <ul class="list-group">
                 <ng-container *ngFor="let place of places">
-                    <a  routerLink="/detail/{{place.id}}" 
-                        [queryParams]="{action: 'view', referer: 'google'}"
-                        class="places-link">
-                        <li class="list-group-item places-item">{{place.name}}</li>
-                    </a>
+                    <li class="list-group-item places-item">
+                        <a  routerLink="/detail/{{place.id}}" 
+                            [queryParams]="{action: 'view'}"
+                            class="item-link">
+                                {{place.name}}
+                        </a>
+                        <div class="item-actions">
+                            <a  routerLink="/detail/{{place.id}}"
+                                [queryParams]="{action: 'view'}"
+                                class="item-view item-link">
+                                <span class="glyphicon glyphicon-search float-right"></span>
+                            </a>
+                            <a  routerLink="/edit/{{place.id}}"
+                                [queryParams]="{action: 'edit'}"
+                                class="item-edit item-link">
+                                <span class="glyphicon glyphicon-pencil float-right"></span>
+                            </a>
+                        </div>
+                    </li>
                 </ng-container>
             </ul>
         </div>
