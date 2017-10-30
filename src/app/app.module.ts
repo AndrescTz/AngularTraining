@@ -7,10 +7,12 @@ import { PlacesComponent } from './components/places/places.component';
 import { CreateComponent } from './components/create/create.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { ErrorMessageComponent } from './shared/components/error-message/error-message.component';
 
 import { AppComponent } from './app.component';
 import { HighlightDirective } from './directives/highlight.directive';
 import { CountCLicksDirective } from './directives/count-clicks.directive';
+import { MessageTypeBoxDirective } from './directives/message-type-box.directive';
 import { PlacesService } from './services/places.service';
 import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
@@ -35,7 +37,9 @@ const appRoutes: Routes = [
     PlacesComponent,
     CreateComponent,
     DetailComponent,
-    ContactComponent
+    ContactComponent,
+    ErrorMessageComponent,
+    MessageTypeBoxDirective
 ],
   imports: [
     BrowserModule,

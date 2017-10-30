@@ -11,9 +11,17 @@ export class PlacesComponent {
   lat: number = -11.9472227;
   lng: number = -77.063395;
   places = null;
+  message = '';
+  messageType = '';
+  showMessage = false;
   constructor(private placesService: PlacesService) {
-    placesService.getPlaces().subscribe( places => {
-        this.places = Object.keys(places).map( key => places[key]);
+    placesService.getPlaces().subscribe(
+         result => {
+          this.places = Object.keys(result).map( key => result[key]);
+      }, error => {
+          this.message = error.statusText;
+          this.messageType = 'error';
+          this.showMessage = true;
       });
   }
 }
