@@ -19,11 +19,17 @@ agm-map{
 }
 .places-item{
     border:none;
+    border-radius: 5px;
     margin-bottom: 20px;
-    background: rgba(34, 34, 34, 0.5);
     display:flex;
     flex-direction: row;
     justify-content: space-between;
+}
+.place-item--all{
+    background: rgba(34, 34, 34, 0.5);
+}
+.place-item--pay{
+    background: rgba(115, 186, 110, 0.6);
 }
 .item-link{
     color: #c8c8c8;

@@ -8,6 +8,8 @@ import { CreateComponent } from './components/create/create.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ErrorMessageComponent } from './shared/components/error-message/error-message.component';
+import { LinkifystrPipe } from './pipes/linkifystr.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HighlightDirective } from './directives/highlight.directive';
@@ -39,7 +41,8 @@ const appRoutes: Routes = [
     DetailComponent,
     ContactComponent,
     ErrorMessageComponent,
-    MessageTypeBoxDirective
+    MessageTypeBoxDirective,
+    LinkifystrPipe
 ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ const appRoutes: Routes = [
     }),
     RouterModule.forRoot(appRoutes),
     HttpModule,
+    BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase, 'platzisqueare'),
     AngularFireAuthModule,
     AngularFireDatabaseModule
