@@ -1,0 +1,14 @@
+.form-box{
+    background: rgba(34, 34, 34, 0.5);
+    padding: 20px;
+}
+.form-btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.form-btns>.btn{
+    display: inline-block;
+    width: 80px;
+    margin: 0 10px;
+}

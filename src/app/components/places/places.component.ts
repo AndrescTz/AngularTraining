@@ -33,6 +33,7 @@ export class PlacesComponent {
         result => {
         this.places = Object.keys(result).map( key => result[key]);
     }, error => {
+      debugger;
         this.message = error.statusText;
         this.messageType = 'error';
         this.showMessage = true;

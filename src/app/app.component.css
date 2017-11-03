@@ -2,10 +2,6 @@ html, body{
     height: 100%;
 }
 
-body{
-    
-}
-
 .well{
     color:#222;
 }
@@ -23,8 +19,4 @@ main{
     color: #e8e8e8;
     padding: 20px 20px 0 20px;
     overflow-y: auto;
-}
-.form-box{
-    background: rgba(34, 34, 34, 0.5);
-    padding: 20px;
 }
