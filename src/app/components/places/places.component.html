@@ -4,7 +4,7 @@
 <div class="map-container">
     <agm-map [latitude]="lat" [longitude]="lng" [zoom]="10">
         <agm-marker *ngFor="let place of places" [latitude]="place.lat" [longitude]="place.lng"></agm-marker>
-    </agm-map>   
+    </agm-map>
 </div>
 <div class="container">
     <div class="row">
@@ -20,7 +20,7 @@
                 <ng-container *ngFor="let place of places">
                     <li class="list-group-item places-item place-item--all">
                         <div>
-                            <a  routerLink="/detail/{{place.id}}" 
+                            <a  routerLink="/detail/{{place.id}}"
                                 [queryParams]="{action: 'view'}"
                                 class="item-link">
                                     <strong>{{place.name}}</strong>
@@ -37,7 +37,8 @@
                             </a>
                             <a  routerLink="/edit/{{place.id}}"
                                 [queryParams]="{action: 'edit'}"
-                                class="item-edit item-link">
+                                class="item-edit item-link"
+                                *ngIf="isLogged">
                                 <span class="glyphicon glyphicon-pencil float-right"></span>
                             </a>
                         </div>
@@ -49,12 +50,12 @@
             <h2>Favourites</h2>
             <ul class="list-group">
                 <ng-container *ngFor="let place of places">
-                    <div class="list-group-item places-item place-item--pay" 
+                    <div class="list-group-item places-item place-item--pay"
                         *ngIf="place.plan == 'pay'"
                         [@animateBoxBackground]="state"
                         (@animateBoxBackground.done)="animationDone($event)">
                         <div>
-                            <a  routerLink="/detail/{{place.id}}" 
+                            <a  routerLink="/detail/{{place.id}}"
                                 [queryParams]="{action: 'view'}"
                                 class="item-link">
                                     <strong>{{place.name}}</strong>

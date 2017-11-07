@@ -15,14 +15,18 @@
         <li routerLinkActive="active"><a routerLink="/contact">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" *ngIf="!loggedIn">
-          <li routerLinkActive="active"><a routerLink="/login">Login</a></li>
-          <li routerLinkActive="active"><a routerLink="/register">Sign-In</a></li>
-        </ul>
+        <li routerLinkActive="active"><a routerLink="/login">Login</a></li>
+        <li routerLinkActive="active"><a routerLink="/register">Sign-In</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" *ngIf="loggedIn">
+        <li><a>{{loggedUser}}</a></li>
+        <li><a class="link-cursor" (click)="logout()">Logout</a></li>
+      </ul>
     </div>
   </div>
 </nav>
 <main>
-  <router-outlet></router-outlet>  
+  <router-outlet></router-outlet>
 </main>
 
-  
+

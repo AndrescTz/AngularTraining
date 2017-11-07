@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, forwardRef, Inject} from '@angular/core';
 import { PlacesService } from '../../services/places.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import {AppComponent} from "../../app.component";
+import {AuthorizationService} from "../../services/authorization.service";
 
 @Component({
   selector: 'app-places',
@@ -17,7 +19,8 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
       transition('start => done', animate(1200)),
       transition('done => start', animate(1200))
     ])
-  ]
+  ],
+  providers: [AppComponent]
 })
 export class PlacesComponent {
   title = 'PlatziSquare';
@@ -28,21 +31,40 @@ export class PlacesComponent {
   message = '';
   messageType = '';
   showMessage = false;
-  constructor(private placesService: PlacesService) {
-    placesService.getPlaces().subscribe(
-        result => {
-        this.places = Object.keys(result).map( key => result[key]);
-    }, error => {
-      debugger;
-        this.message = error.statusText;
-        this.messageType = 'error';
-        this.showMessage = true;
-    });
+  isLogged: boolean;
+  constructor(
+    private placesService: PlacesService,
+    @Inject(forwardRef(() => AppComponent)) appComp: AppComponent, private authService: AuthorizationService) {
+      //this.isLogged = appComp.getLoggedIn();
+      this.loggedStatus();
+      placesService.getPlaces().subscribe(
+          result => {
+          this.places = Object.keys(result).map( key => result[key]);
+      }, error => {
+          this.message = error.statusText;
+          this.messageType = 'error';
+          this.showMessage = true;
+      });
+  }
+  private loggedStatus(){
+    this.authService.isLogged().subscribe(
+      result => {
+        this.isLogged = ( result && result.uid ) ? true : false;
+        if(this.isLogged){
+          this.getUserLogged();
+        }
+      }, error => {
+        this.isLogged = false;
+      }
+    );
   }
   private animate() {
     this.state = (this.state === 'done') ? 'start' : 'done';
   }
   private animationDone(event) {
     this.animate();
+  }
+  private getUserLogged(){
+    console.log("AuhService", this.authService);
   }
 }

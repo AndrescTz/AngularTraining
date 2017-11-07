@@ -3,8 +3,8 @@ import { CanActivate } from '@angular/router';
 import { AuthorizationService } from './authorization.service';
 
 @Injectable()
-export class MyGuardService {
-    loggedIn = false
+export class MyGuardService implements CanActivate{
+    loggedIn = false;
     constructor(private authService: AuthorizationService){
       this.authService.isLogged().subscribe(
         result => {

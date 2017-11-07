@@ -15,6 +15,7 @@ export class PlacesService {
 
         return this.http.get(`${this.API_ENDPOINT}/.json`)
         .map( result => { // rxjs reference fot this 'map'
+            debugger;
             const data = result.json().places;
             return data;
         });

@@ -30,7 +30,7 @@ const appRoutes: Routes = [
   { path: '', component: PlacesComponent },
   { path: 'places', component: PlacesComponent },
   { path: 'create', component: CreateComponent, canActivate: [MyGuardService] },
-  { path: 'edit/:id', component: CreateComponent },
+  { path: 'edit/:id', component: CreateComponent, canActivate: [MyGuardService] },
   { path: 'detail/:id', component: DetailComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
