@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlacesService } from '../../services/places.service';
+import { Observable } from "rxjs/Observable";
+import 'rxjs/Rx';
+import { FormControl } from '@angular/forms';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-create',
@@ -11,12 +15,23 @@ export class CreateComponent {
   place: any = {};
   placeTitle: string = '';
   isNew: boolean = true;
+  results$: Observable<any>;
+  private searchField: FormControl;
   constructor(
     private router: Router,
     private route: ActivatedRoute, 
-    private placesService: PlacesService) {
+    private placesService: PlacesService,
+    private http: Http) {
       let action = this.route.snapshot.queryParams['action'];
       this.setIsNew(action);
+      const URL= 'https://maps.google.com/maps/api/geocode/json';
+      this.searchField = new FormControl();
+      this.results$ = this.searchField.valueChanges
+          .debounceTime(500)
+          .switchMap(query => this.http.get(`${URL}?address=${query}`))
+          .map(response => response.json())
+          .map(response => response.results);
+
   }
   setIsNew(action){
     const id = this.route.snapshot.params['id'];
@@ -46,10 +61,17 @@ export class CreateComponent {
     if(this.isNew){
       this.place.id = Date.now();
     }
-    this.placesService.savePlace(this.place)
-      .subscribe( result => {
-        alert('Successfully saved!!!...');
-        this.router.navigate(['/places']);
+    this.placesService.savePlace(this.place, error => {
+        if (!error) {
+          alert('Successfully saved!!!...');
+          this.router.navigate(['/places']);
+        }
       });
+  }
+  selectAddress(address) {
+      this.place.street = `${address[1].long_name} ${address[0].long_name}`;
+      this.place.city = address[3].long_name;
+      this.place.country = address[5].long_name;
+      this.results$ = Observable.empty<Response>();
   }
 }

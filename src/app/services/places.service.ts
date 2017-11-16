@@ -10,34 +10,35 @@ export class PlacesService {
     constructor(private afDB: AngularFireDatabase, private http: Http) { }
     public getPlaces() {
         /*   SOCKETS   */
-        // return this.afDB.list('places/');
+        return this.afDB.list('places/');
         /* ----------- */
 
-        return this.http.get(`${this.API_ENDPOINT}/.json`)
+        /*return this.http.get(`${this.API_ENDPOINT}/.json`)
         .map( result => { // rxjs reference fot this 'map'
-            debugger;
             const data = result.json().places;
             return data;
-        });
+        });*/
 
     }
     public findPlace(id){
         return this.afDB.object(`places/${id}`);
     }
-    public savePlace(place) {
+    public savePlace(place, callback) {
         /*   SOCKETS   */
-        // return this.afDB.database.ref(`places/${place.id}`).set(place);
+        return this.afDB.database.ref(`places/${place.id}`).set(place, response => {
+            callback(response);
+        });
         /* ----------- */
 
         /*     HTTP    */
-        const headers = new Headers({'Content-Type': 'application/json'});
+        /*const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post(
             `${this.API_ENDPOINT}/places.json`,
             place,
             {
                 headers: headers
             }
-        );
+        );*/
         /* ----------- */
     }
     public getGeoData(address){

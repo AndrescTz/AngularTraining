@@ -11,10 +11,7 @@
         <div class="col-md-8 near-places__container">
             <div class="row__header">
                 <h2 class="header__title">Near Places</h2>
-                <a class="btn btn-primary header__button"
-                   routerLink="/create">
-                    New Place
-                </a>
+                <button class="btn btn-primary header__button" (click)="newPlace()">New Place</button> 
             </div>
             <ul class="list-group">
                 <ng-container *ngFor="let place of places">

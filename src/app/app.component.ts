@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthorizationService } from './services/authorization.service';
 import {AngularFireAuth} from "angularfire2/auth";
-import { Observable } from "rxjs/Observable";
-import 'rxjs/Rx';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +17,7 @@ export class AppComponent {
         this.loggedIn = ( result && result.uid ) ? true : false;
         setTimeout( () => {
           if(this.loggedIn){
-            this.loggedUser = this.authService.getUser().currentUser.displayName;
+            this.loggedUser = this.authService.getUser().currentUser.email;
           }
         }, 500);
       }, error => {

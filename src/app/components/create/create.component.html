@@ -27,6 +27,19 @@
     <br>
     <h3>Address</h3>
     <hr>
+    <div class="well">
+      <form>
+        <h3>Find address in Google Maps</h3>
+        <input type="text" [formControl]="searchField" class="form-control"/>
+      </form>
+      <ul class="list-group">
+        <ng-container *ngFor="let result of results$ | async" >
+          <li class="list-group-item item_pointer" (click)="selectAddress(result.address_components)">
+            {{result.formatted_address}}
+          </li>
+        </ng-container>
+      </ul>
+    </div>
     <div class="form-item">
         <label>Street</label>
         <input type="text" class="form-control" [(ngModel)]="place.street"/>

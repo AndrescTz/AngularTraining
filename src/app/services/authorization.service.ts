@@ -21,7 +21,6 @@ export class AuthorizationService {
         this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
         .then(response => {
             alert('User logged!');
-            console.log(response);
             this.router.navigate((['places']));
         }).catch(error => {
             alert('An error ocurred!');
@@ -32,7 +31,6 @@ export class AuthorizationService {
         this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password)
             .then(response => {
                 alert('User register!');
-                console.log(response);
                 this.router.navigate((['places']));
             }).catch(error => {
                 alert('An error ocurred!');

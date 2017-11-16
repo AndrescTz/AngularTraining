@@ -3,6 +3,7 @@ import { PlacesService } from '../../services/places.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import {AppComponent} from "../../app.component";
 import {AuthorizationService} from "../../services/authorization.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-places',
@@ -34,17 +35,17 @@ export class PlacesComponent {
   isLogged: boolean;
   constructor(
     private placesService: PlacesService,
-    @Inject(forwardRef(() => AppComponent)) appComp: AppComponent, private authService: AuthorizationService) {
+    @Inject(forwardRef(() => AppComponent)) appComp: AppComponent, private authService: AuthorizationService, private router: Router) {
       //this.isLogged = appComp.getLoggedIn();
       this.loggedStatus();
-      placesService.getPlaces().subscribe(
+      placesService.getPlaces().valueChanges().subscribe(
           result => {
           this.places = Object.keys(result).map( key => result[key]);
-      }, error => {
+          }/*, error => {
           this.message = error.statusText;
           this.messageType = 'error';
           this.showMessage = true;
-      });
+      }*/);
   }
   private loggedStatus(){
     this.authService.isLogged().subscribe(
@@ -59,12 +60,15 @@ export class PlacesComponent {
     );
   }
   private animate() {
-    this.state = (this.state === 'done') ? 'start' : 'done';
+    //this.state = (this.state === 'done') ? 'start' : 'done';
   }
   private animationDone(event) {
     this.animate();
   }
   private getUserLogged(){
     console.log("AuhService", this.authService);
+  }
+  private newPlace() {
+    this.router.navigate(['/create']);
   }
 }
