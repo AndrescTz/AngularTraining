@@ -1,3 +1,29 @@
-<p>
-  user-single works!
-</p>
+<div class="container" *ngIf="user">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="btns-section pull-right">
+        <a [routerLink]="['/users', user.id, 'edit']" class="btn btn-sm btn-primary">Edit</a>
+      </div>
+      <div class="clearfix"></div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-sm-2">Name:</div>
+            <div class="col-sm-4">{{user.name}}</div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-sm-2">Username:</div>
+            <div class="col-sm-4">{{user.username}}</div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="text-center">
+            <img [src]="user.avatar" class="user-avatar">
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

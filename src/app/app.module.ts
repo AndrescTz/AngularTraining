@@ -9,11 +9,13 @@ import 'rxjs/add/operator/catch';
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
 
-import { UsersService } from './shared/services/users.service';
+import { CommonService } from './common/services/common.service';
 import { UserCreateComponent } from './users/user-create/user-create.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserSingleComponent } from './users/user-single/user-single.component';
 import { UserListComponent } from './users/user-list/user-list.component';
+import { AppRoutingModule } from './app.routing';
+import { UserService } from './users/services/user.service';
 
 @NgModule({
   declarations: [
@@ -27,9 +29,10 @@ import { UserListComponent } from './users/user-list/user-list.component';
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
-  providers: [UsersService],
+  providers: [CommonService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
