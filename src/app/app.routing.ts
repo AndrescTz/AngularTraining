@@ -20,11 +20,11 @@ const appRoutes: Routes = [
             {
                 path: '',
                 component: UserListComponent
-            }/*,
+            },
             {
                 path: 'create',
                 component: UserCreateComponent
-            }*/,
+            },
             {
                 path: ':id',
                 component: UserSingleComponent

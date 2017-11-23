@@ -1,3 +1,29 @@
-<p>
-  user-create works!
-</p>
+<div class="row">
+  <form class="col-sm-8 col-sm-offset-2" (ngSubmit)="createUser()">
+    <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+    <div class="btns-section pull-right">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a [routerLink]="['/users']" class="btn btn-default" role="button">Cancel</a>
+    </div>
+    <div class="clearfix"></div>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-sm-2"><label>Name:</label></div>
+          <div class="col-sm-4">
+            <input name="name" type="text" class="form-control" [(ngModel)]="user.name"/>
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-sm-2"><label>Username:</label></div>
+          <div class="col-sm-4">
+            <input name="username" type="text" class="form-control" [(ngModel)]="user.username"/>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </form>
+</div>

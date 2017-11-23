@@ -11,7 +11,7 @@ export class CommonService {
         if (err instanceof Response) {
             const body = err.json() || '';
             const error = body.error || JSON.stringify(body);
-            errMessage = `${err.status} - ${err.statusText} || ''} ${error}`;
+            errMessage = `${err.status} - ${err.statusText || ''} ${error}`;
         }else {
             errMessage = err.message ? err.message : err.toString();
         }

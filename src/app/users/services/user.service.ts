@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { CommonService } from '../../common/services/common.service';
 import { User } from '../../common/models/user';
+import { useAnimation } from '@angular/core/src/animation/dsl';
 
 @Injectable()
 export class UserService {
@@ -32,6 +33,13 @@ export class UserService {
         return this.http.get(`${this.URL}/users/${id}`)
             .map(res => res.json().data)
             .map(this.toUser)
+            .catch(this.commonService.handleError);
+    }
+
+    public updateUser(user: User): Observable<User> {
+        return this.http.put(`${this.URL}/users/${user.id}`, user)
+        // return this.http.get(`${this.URL}/users/23`)
+            .map(res => res.json())
             .catch(this.commonService.handleError);
     }
 }
