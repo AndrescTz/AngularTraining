@@ -6,11 +6,17 @@ import { UserCreateComponent } from './users/user-create/user-create.component';
 import { UserSingleComponent } from './users/user-single/user-single.component';
 import { componentFactoryName } from '@angular/compiler';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
     {
         path: '',
         redirectTo: '/users',
+        pathMatch: 'full'
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
         pathMatch: 'full'
     },
     {

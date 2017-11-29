@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/do';
 
 import { AppComponent } from './app.component';
 import { UsersComponent } from './users/users.component';
@@ -17,6 +18,8 @@ import { UserSingleComponent } from './users/user-single/user-single.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { AppRoutingModule } from './app.routing';
 import { UserService } from './users/services/user.service';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './login/services/login.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { UserService } from './users/services/user.service';
     UserCreateComponent,
     UserEditComponent,
     UserSingleComponent,
-    UserListComponent
+    UserListComponent,
+    LoginComponent
 ],
   imports: [
     BrowserModule,
@@ -33,7 +37,7 @@ import { UserService } from './users/services/user.service';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [CommonService, UserService],
+  providers: [CommonService, LoginService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
