@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './services/login.service';
+import { AuthService } from '../common/services/auth.service';
+import { Router } from '@angular/router';
+import { CommonService } from '../common/services/common.service';
 
 @Component({
   selector: 'app-login',
@@ -8,17 +10,22 @@ import { LoginService } from './services/login.service';
 })
 export class LoginComponent implements OnInit {
   credentials = {username: '', password: '' };
-  successMessage: string = '';
   errorMessage: string = '';
-  constructor(private service: LoginService) { }
+  constructor(private service: AuthService, private commonService: CommonService, private router: Router) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    if (this.service.isLoggedIn()) {
+      this.router.navigate(['']);
+    }
+    this.commonService.errorMessage$.subscribe(err => {
+      this.errorMessage = err;
+    });
+  }
 
   login() {
     this.service.login(this.credentials.username, this.credentials.password)
       .subscribe(res => {
-        console.log(res.token);
-        debugger;
+        this.router.navigate(['users']);
       });
   }
 

@@ -19,7 +19,7 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import { AppRoutingModule } from './app.routing';
 import { UserService } from './users/services/user.service';
 import { LoginComponent } from './login/login.component';
-import { LoginService } from './login/services/login.service';
+import { AuthService } from './common/services/auth.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { LoginService } from './login/services/login.service';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [CommonService, LoginService, UserService],
+  providers: [CommonService, AuthService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
